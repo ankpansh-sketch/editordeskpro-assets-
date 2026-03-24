@@ -1,0 +1,291 @@
+<!-- START: RESPONSIVE SOCIAL SHARE BUTTONS WITH GRADIENT ANIMATION -->
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Share Article</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    .share-container-dark {
+      background: #121212 !important;
+      color: #ffffff !important;
+      padding: 20px !important;
+      border-radius: 15px !important;
+      border: 2px solid #ff9800 !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 auto !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+      box-sizing: border-box !important;
+    }
+    
+    .share-title-dark {
+      font-size: clamp(14px, 4vw, 18px);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 20px !important;
+      color: #ffffff !important;
+      line-height: 1.4;
+    }
+    
+    .share-grid-dark {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      width: 100%;
+    }
+    
+    /* Responsive: 2 columns on small screens */
+    @media (max-width: 480px) {
+      .share-grid-dark {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+      .share-container-dark {
+        padding: 15px !important;
+      }
+    }
+    
+    /* Responsive: 3 columns on medium screens */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .share-grid-dark {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+    }
+    
+    .share-btn-dark {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 5px;
+      background: linear-gradient(135deg, #1a1a1a, #0d0d0d) !important;
+      border: 1px solid #333 !important;
+      border-radius: 10px !important;
+      text-decoration: none !important;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      width: 100%;
+    }
+    
+    /* Gradient Animation */
+    .share-btn-dark::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 152, 0, 0.3), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .share-btn-dark:hover::before {
+      left: 100%;
+    }
+    
+    .share-btn-dark:hover {
+      border-color: #ff9800 !important;
+      background: linear-gradient(135deg, #252525, #1a1a1a) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 152, 0, 0.2);
+    }
+    
+    .share-btn-dark:active {
+      transform: translateY(0);
+    }
+    
+    /* Icon styling - no white background */
+    .share-btn-dark img {
+      width: 28px !important;
+      height: 28px !important;
+      object-fit: contain;
+      margin-bottom: 6px;
+      background: transparent !important;
+      filter: brightness(1) drop-shadow(0 0 2px rgba(255,152,0,0.3));
+    }
+    
+    /* Responsive icon sizes */
+    @media (max-width: 480px) {
+      .share-btn-dark img {
+        width: 24px !important;
+        height: 24px !important;
+      }
+      .share-btn-dark {
+        padding: 10px 5px;
+      }
+    }
+    
+    .share-label-dark {
+      font-size: 10px !important;
+      color: #ff9800 !important;
+      font-weight: 600;
+      text-decoration: none !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    @media (max-width: 480px) {
+      .share-label-dark {
+        font-size: 9px !important;
+      }
+    }
+    
+    /* Footer Credit */
+    .share-footer-dark {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 12px;
+      border-top: 1px solid #333;
+    }
+    
+    .editor-credit {
+      font-family: monospace;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #ff9800;
+      text-decoration: none;
+      background: linear-gradient(90deg, #ff9800, #ffb74d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 10px rgba(255,152,0,0.3);
+    }
+    
+    /* Success message style */
+    .toast-message {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 14px;
+      z-index: 9999;
+      animation: fadeInOut 2s ease;
+      white-space: nowrap;
+    }
+    
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+      15% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      85% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="share-container-dark">
+  <p class="share-title-dark">📢 इस Article को Share करें — किसी की बहुत मदद हो सकती है!</p>
+  
+  <div class="share-grid-dark" id="shareGridDark">
+    <!-- Buttons will be inserted here -->
+  </div>
+  
+  <div class="share-footer-dark">
+    <span class="editor-credit">EDITORDESKPRO</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Get current page URL and Title for sharing
+  var currentUrl = encodeURIComponent(window.location.href);
+  var currentTitle = encodeURIComponent(document.title || "Ponzi Scheme - जानकारी");
+  
+  // Function to show toast message
+  function showToast(message) {
+    var existingToast = document.querySelector('.toast-message');
+    if(existingToast) existingToast.remove();
+    
+    var toast = document.createElement('div');
+    toast.className = 'toast-message';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(function() {
+      if(toast) toast.remove();
+    }, 2000);
+  }
+  
+  // Share URLs for different platforms
+  var shareUrls = {
+    "WhatsApp": function() { return "https://wa.me/?text=" + currentTitle + "%20" + currentUrl; },
+    "Facebook": function() { return "https://www.facebook.com/sharer/sharer.php?u=" + currentUrl; },
+    "Twitter / X": function() { return "https://twitter.com/intent/tweet?text=" + currentTitle + "&url=" + currentUrl; },
+    "Telegram": function() { return "https://t.me/share/url?url=" + currentUrl + "&text=" + currentTitle; },
+    "LinkedIn": function() { return "https://www.linkedin.com/shareArticle?mini=true&url=" + currentUrl + "&title=" + currentTitle; },
+    "Pinterest": function() { return "https://pinterest.com/pin/create/button/?url=" + currentUrl + "&description=" + currentTitle; },
+    "Gmail": function() { return "https://mail.google.com/mail/?view=cm&fs=1&su=" + currentTitle + "&body=" + currentUrl; },
+    "Copy Link": function() { return null; }
+  };
+  
+  var platforms = [
+    {name: "WhatsApp", icon: "https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"},
+    {name: "Facebook", icon: "https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg"},
+    {name: "Twitter / X", icon: "https://upload.wikimedia.org/wikipedia/commons/c/ce/X_logo_2023.svg"},
+    {name: "Telegram", icon: "https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg"},
+    {name: "LinkedIn", icon: "https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg"},
+    {name: "Pinterest", icon: "https://upload.wikimedia.org/wikipedia/commons/0/08/Pinterest-logo.png"},
+    {name: "Gmail", icon: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg"},
+    {name: "Copy Link", icon: "https://cdn-icons-png.flaticon.com/512/2950/2950616.png"}
+  ];
+
+  var grid = document.getElementById('shareGridDark');
+  
+  platforms.forEach(function(p) {
+    var a = document.createElement('a');
+    a.className = 'share-btn-dark';
+    a.setAttribute('aria-label', 'Share on ' + p.name);
+    a.innerHTML = `<img src="${p.icon}" alt="${p.name}"> <span class="share-label-dark">${p.name}</span>`;
+    
+    // Add share functionality
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      if(p.name === "Copy Link") {
+        // Copy link to clipboard
+        var linkToCopy = decodeURIComponent(currentUrl);
+        navigator.clipboard.writeText(linkToCopy).then(function() {
+          showToast("✅ लिंक कॉपी हो गया!");
+        }).catch(function() {
+          // Fallback for older browsers
+          var textarea = document.createElement('textarea');
+          textarea.value = decodeURIComponent(currentUrl);
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+          showToast("✅ लिंक कॉपी हो गया!");
+        });
+      } 
+      else {
+        // Open share URL in new window
+        var shareUrl = shareUrls[p.name]();
+        if(shareUrl) {
+          window.open(shareUrl, '_blank', 'width=600,height=500,noopener,noreferrer');
+        }
+      }
+    });
+    
+    grid.appendChild(a);
+  });
+})();
+</script>
+
+</body>
+</html>
+<!-- END: RESPONSIVE SOCIAL SHARE BUTTONS WITH GRADIENT ANIMATION -->
